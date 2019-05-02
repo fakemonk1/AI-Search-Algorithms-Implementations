@@ -134,70 +134,16 @@ class PriorityQueue(object):
             return 0, None
 
 
-def breadth_first_search(graph, start, goal):
-    """
-    Warm-up exercise: Implement uniform_cost_search.
-
-    See README.md for exercise description.
-
-    Args:
-        graph (ExplorableGraph): Undirected graph to search.
-        start (str): Key for the start node.
-        goal (str): Key for the end node.
-
-    Returns:
-        The best path as a list from the start and goal nodes (including both).
-    """
-
-    path = []
-
-    # Edge case check
-    explored_nodes = list()
-    if start == goal:
-        return len(explored_nodes), explored_nodes
-
-    path.append(start)
-    frontier = [start]
-    while len(frontier) > 0:
-        # pop a node from the queue
-        current_node = frontier.pop(0)
-        explored_nodes.append(current_node)
-
-        neighbours = graph[current_node]
-        new_form_neighbours = []
-        for nn in neighbours:
-            str_list = nn.split('_')
-            int_list = []
-            for a in str_list:
-                int_list.append(int(a))
-            new_form_neighbours.append(int_list)
-
-        new_form_neighbours = sorted(new_form_neighbours, key=lambda element: (element[0], element[1]))
-        old_form_neighbours = []
-        for nn in new_form_neighbours:
-            old_form_neighbours.append(str(nn[0])+"_"+str(nn[1]))
-
-        for child in old_form_neighbours:
-            if child not in set(explored_nodes) or child not in set(frontier):
-                if child == goal:
-                    return len(explored_nodes), explored_nodes
-                frontier.append(child)
-
-    return None, None
-
-
 def uniform_cost_search(graph, start, goal):
     path = []
     explored_nodes = list()
 
-    # Edge case check
     if start == goal:
         return path, explored_nodes
 
     path.append(start)
     path_cost = 0
 
-    # Priority Queue to keep sorted distance travelled till now
     frontier = [(path_cost, path)]
     while len(frontier) > 0:
         # pop a node from the queue
@@ -219,7 +165,6 @@ def uniform_cost_search(graph, start, goal):
             path_to_neighbour = path_till_now.copy()
             path_to_neighbour.append(neighbour)
 
-            # extra_cost = get_cost(current_node, neighbour)
             extra_cost = 1
             neighbour_cost = extra_cost + path_cost_till_now
             new_element = (neighbour_cost, path_to_neighbour)
@@ -245,20 +190,7 @@ def is_this_node_in_frontier(node, frontier):
     return False
 
 
-def new_astar_search(graph, start, goal):
-    """
-    Warm-up exercise: Implement uniform_cost_search.
-
-    See README.md for exercise description.
-
-    Args:
-        graph (ExplorableGraph): Undirected graph to search.
-        start (str): Key for the start node.
-        goal (str): Key for the end node.
-
-    Returns:
-        The best path as a list from the start and goal nodes (including both).
-    """
+def astar_search(graph, start, goal):
 
     path = []
     explored_nodes = list()
@@ -365,43 +297,26 @@ def get_manhattan_heuristic(node, goal):
 if __name__ == '__main__':
     graph_neighbours = generate_graph()
 
-    print("============ Testing UCS================")
+    print("============ UCS Search ================")
     path_ucs, explored_ucs = uniform_cost_search(graph_neighbours, '0', '61')
     print("Path UCS:", path_ucs)
-    print("Explored Nodes UCS: ", explored_ucs)
+    # print("Explored Nodes UCS: ", explored_ucs)
     print(len(explored_ucs))
     print()
 
-    print("============ Testing AStar================")
-    path_astar, explored_astar = new_astar_search(graph_neighbours, '0', '61')
+    print("============ AStar Search ================")
+    path_astar, explored_astar = astar_search(graph_neighbours, '0', '61')
     print("Path_astar:", path_astar)
     print("Explored Nodes A Star: ", explored_astar)
     print(len(explored_astar))
     print()
 
-    #
-    print("============ Testing Bottleneck Astar================")
-    path_1, explored_1 = new_astar_search(graph_neighbours, '0', '27')
-
-    path_2, explored_2 = new_astar_search(graph_neighbours, '35', '61')
+    print("============ Bottleneck Astar Search ================")
+    path_1, explored_1 = astar_search(graph_neighbours, '0', '27')
+    path_2, explored_2 = astar_search(graph_neighbours, '35', '61')
     print("Path1:", path_1)
     print("Path_2:", path_2)
 
     print("Explored Nodes1: ", explored_1)
     print("Explored Nodes2: ", explored_2)
     print(len(explored_1) + len(explored_2))
-
-    var_a = {'0', '1', '8', '16', '2', '9', '10', '17', '24', '18', '25', '19', '26', '11', '20', '27', '28', '3', '35',
-             '29', '34', '36', '4', '30', '33', '37', '5', '31', '32', '6', '23', '40', '15', '48', '14', '56', '7',
-             '13',
-             '57', '12', '21', '58', '22', '59', '51', '60', '43', '42', '44', '41', '45', '50', '46', '49', '53', '38',
-             '52', '61'}
-    var_b = {'0', '1', '2', '10', '18', '19', '20', '28', '29', '8', '16', '17', '24', '25', '26', '27', '35', '36',
-             '37', '9', '11', '30', '34', '3', '31', '33', '4', '5', '23', '32', '40', '48', '56', '57', '58', '59',
-             '6', '60', '15', '14', '13', '21', '51', '12', '22', '43', '44', '45', '53', '61'}
-
-    var_c = {'0', '1', '2', '10', '18', '19', '8', '16', '17', '24', '25', '26', '27', '35', '36', '37', '27', '34',
-             '26', '33', '25', '32', '40', '48', '56', '57', '58', '59', '60', '24', '51', '16', '17', '43', '44', '45',
-             '53', '61'}
-
-    print(var_b - var_c)
