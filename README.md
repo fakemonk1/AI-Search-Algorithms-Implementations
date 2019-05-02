@@ -2,7 +2,7 @@ In Naboo Planet the R2-D2 droid is serving her Queen Amidala and has received so
 As soon as Dark Lord finds this out, he sends his army after R2D2 to recover the documents from him.  Fearing the Darth's Army, R2D2 hides in a Cave which looks like this
 While entering the cave R2D2 has found a map of the cave and It knows that it is at grid location 0 and needs to reach grid 61 to go out of the Cave.
 
-![]([https://raw.githubusercontent.com/fakemonk1/project-AI-Search-Algorithms/master/search_grid.png](https://raw.githubusercontent.com/fakemonk1/project-AI-Search-Algorithms/master/search_grid.png)
+![]([https://raw.githubusercontent.com/fakemonk1/AI-Search-Algorithms-Implementations/master/images/search_grid.png](https://raw.githubusercontent.com/fakemonk1/AI-Search-Algorithms-Implementations/master/images/search_grid.png)
 
 
 Darth's Army has got to know that R is hiding in the cave and set up the explosives in the cave that will go off after a certain time.
@@ -12,7 +12,7 @@ Let us use our knowledge of AI and help R to search his path out of the Cave.
 R2D2 will follow the following rules for Searching the cave(which are hardcoded in his memory)
 
 - The (x, y) coordinates of each node are defined by the column and the row shown at the top and left of the maze, respectively. For example, node 13 has (x, y) coordinates (1, 5). 
-- Process neighbors in increasing order. For example, if processing the neighbors of node 13, first process 12, then 14, then 21.
+- Process neighbours in increasing order. For example, if processing the neighbours of node 13, first process 12, then 14, then 21.
 - Use a priority queue for your frontier. Similar to Assignment 2, add tuples of (priority, node) to the frontier. For example, when performing UCS and processing node 13, add (15, 12) to the frontier, then (15, 14), then (15, 21), where 15 is the distance (or cost) to each node. When performing A*, use the cost plus the heuristic distance as the priority.
 - When removing nodes from the frontier (or popping off the queue), break ties by taking the node that comes first lexicographically. For example, if deciding between (15, 12), (15, 14) and (15, 21) from above, choose (15, 12) first (because 12 < 14 < 21).
 - A node is considered visited when it is removed from the frontier (or popped off the queue). 
@@ -71,10 +71,10 @@ So, If R2D2 follows the Uniform cost search, 58 nodes will be explored and hence
 
 Turns out that the Darth Vadar also has the knowledge about the UCS, he updated the time of the explosive so that UCS will not work anymore for R2D2.
 
-What choice does R2D2 has now?
+What choice does R2D2 have now?
 Having studies Search Algorithms, R2D2 knows that **A* search works faster than Uniform cost search**. He uses A* search with the Manhattan distance heuristic. How much time will R2D2 take now to find the path out of the cave?
 
-Let us implement the A star Search algorithm with the manhatten distance heuristic.
+Let us implement the A star Search algorithm with the Manhatten distance heuristic.
 Manhatten distance is the sum of the horizontal and vertical distances between points on a grid and the formula to calculate the same is:
 
 ```
@@ -132,10 +132,9 @@ def astar_search(graph, start, goal):
   
     return None, None
 ```
-R2D2 now explored 50 nodes and hence it now takes 50 minutes to get out of the cave, which is 8 mintues faster than the UCS.
+R2D2 now explored 50 nodes and hence it now takes 50 minutes to get out of the cave, which is 8 minutes faster than the UCS.
 
 R2D2 now got a tip from a trusted droid friend that Darth Vadar has once again updated the timer and that a traditional A* search will not be good enough.
 R2D2, being the expert he is, is not deterred. He notices there is a bottleneck in the maze. More specifically, the edge from 27-35 is the only way to crossover from the left half of the maze to the right half. Realizing this, R2D2 decides to split the search into two parts. First, he searches from the start to the bottleneck (node 27). Then, he searches from the bottleneck (node 35) to the goal. How much time will he take to get out of the cave now?
 
-If R2D2 run the bottleneck Astar from 0 to 27 and then 35 to 61, he just need to explore 38 nodes and can get out the cave quicker as compared to the other search methods.
-
+If R2D2 run the bottleneck Astar from 0 to 27 and then 35 to 61, he just needs to explore 38 nodes and can get out the cave quicker as compared to the other search methods.
