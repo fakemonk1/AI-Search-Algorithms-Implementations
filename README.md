@@ -27,7 +27,9 @@ R2D2 will follow the following rules for Searching the cave(which are hardcoded 
 Below is the Pseudo code of Uniform Cost Search  
 <img src="https://github.com/fakemonk1/AI-Search-Algorithms-Implementations/blob/master/images/UCS_pseudocode.png?raw=true" width="600" height="400" align="left" />  
   
-Let us try to implement the Uniform cost search  
+<br/>Let us try to implement the Uniform cost search
+
+
 ```  
 def uniform_cost_search(graph, start, goal):    
     path = []    
