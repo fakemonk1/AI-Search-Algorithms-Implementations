@@ -1,14 +1,15 @@
 ## AI Search Algorithms Implementations  
   
-In Naboo Planet the R2-D2 droid is serving her Queen Amidala and has received some important documents of Dark Lord Darth Vadar.  
+In Naboo Planet the R2-D2 droid is serving her Queen Amidala and has received some important documents of Dark Lord Darth Vadar.
+  
 As soon as Dark Lord finds this out, he sends his army after R2D2 to recover the documents from him.  Fearing the Darth's Army, R2D2 hides in a Cave. While entering the cave R2D2 has found a map of the cave and It knows that it is at grid location 0 and needs to reach grid 61 to go out of the Cave.  
   
-<img src="https://raw.githubusercontent.com/fakemonk1/AI-Search-Algorithms-Implementations/master/images/search_grid.png" width="400" height="400" align="middle" />  
   
+ ![grid image](https://raw.githubusercontent.com/fakemonk1/AI-Search-Algorithms-Implementations/master/images/search_grid.png)
   
-Darth's Army has got to know that R is hiding in the cave and set up the explosives in the cave that will go off after a certain time.  
+Darth's Army has got to know that R2D2 is hiding in the cave and set up the explosives in the cave that will go off after a certain time.  
   
-Let us use our knowledge of AI and help R to search his path out of the Cave.  
+Let us use our knowledge of AI and help R2D2 to search his path out of the Cave.  
   
 R2D2 will follow the following rules for Searching the cave(which are hardcoded in his memory)  
   
@@ -25,9 +26,10 @@ R2D2 will follow the following rules for Searching the cave(which are hardcoded 
   
 **If R2D2 uses a Uniform Cost Search, how long will it take him to escape the Cave?**   
 Below is the Pseudo code of Uniform Cost Search  
-<img src="https://github.com/fakemonk1/AI-Search-Algorithms-Implementations/blob/master/images/UCS_pseudocode.png?raw=true" width="600" height="400" align="left" />  
+![UCS_Pseudo code](https://github.com/fakemonk1/AI-Search-Algorithms-Implementations/blob/master/images/UCS_pseudocode.png?raw=true)
+
   
-<br/>Let us try to implement the Uniform cost search
+Let us try to implement the Uniform cost search
 
 
 ```  
