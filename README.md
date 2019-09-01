@@ -1,21 +1,21 @@
 ## AI Search Algorithms Implementations  
   
-In Naboo Planet the R2-D2 droid is serving her Queen Amidala and has received some important documents of Dark Lord Darth Vadar.
+In Naboo Planet the R2-D2 droid is serving her Queen Amidala and has received some important documents containing secrets of the castle of Dark Lord Darth Vadar located on the the volcanic planet of Mustafar.
   
 As soon as Dark Lord finds this out, he sends his army after R2D2 to recover the documents from him.  Fearing the Darth's Army, R2D2 hides in a Cave. While entering the cave R2D2 has found a map of the cave and It knows that it is at grid location 0 and needs to reach grid 61 to go out of the Cave.  
   
   
- ![grid image](https://raw.githubusercontent.com/fakemonk1/AI-Search-Algorithms-Implementations/master/images/search_grid.png)
+![grid image](https://raw.githubusercontent.com/fakemonk1/AI-Search-Algorithms-Implementations/master/images/search_grid.png)
   
 Darth's Army has got to know that R2D2 is hiding in the cave and set up the explosives in the cave that will go off after a certain time.  
   
 Let us use our knowledge of AI and help R2D2 to search his path out of the Cave.  
   
-R2D2 will follow the following rules for Searching the cave(which are hardcoded in his memory)  
+R2D2 will follow the following rules for Searching the cave (this logic is hardcoded in his memory)  
   
 - The (x, y) coordinates of each node are defined by the column and the row shown at the top and left of the maze, respectively. For example, node 13 has (x, y) coordinates (1, 5).   
 - Process neighbours in increasing order. For example, if processing the neighbours of node 13, first process 12, then 14, then 21.  
-- Use a priority queue for your frontier. Similar to Assignment 2, add tuples of (priority, node) to the frontier. For example, when performing UCS and processing node 13, add (15, 12) to the frontier, then (15, 14), then (15, 21), where 15 is the distance (or cost) to each node. When performing A*, use the cost plus the heuristic distance as the priority.  
+- Use a priority queue for your frontier. Add tuples of (priority, node) to the frontier. For example, when performing UCS and processing node 13, add (15, 12) to the frontier, then (15, 14), then (15, 21), where 15 is the distance (or cost) to each node.  
 - When removing nodes from the frontier (or popping off the queue), break ties by taking the node that comes first lexicographically. For example, if deciding between (15, 12), (15, 14) and (15, 21) from above, choose (15, 12) first (because 12 < 14 < 21).  
 - A node is considered visited when it is removed from the frontier (or popped off the queue).   
 - You can only move horizontally and vertically (not diagonally).  
@@ -24,12 +24,12 @@ R2D2 will follow the following rules for Searching the cave(which are hardcoded 
   
 ### Uniform Cost Search
   
-**If R2D2 uses a Uniform Cost Search, how long will it take him to escape the Cave?**   
+**R2D2 has been instructed to use Uniform Cost Search algorithm to get out of the maze. If R2D2 uses a Uniform Cost Search, how long will it take him to escape the Cave?**   
 Below is the Pseudo code of Uniform Cost Search  
 ![UCS_Pseudo code](https://github.com/fakemonk1/AI-Search-Algorithms-Implementations/blob/master/images/UCS_pseudocode.png?raw=true)
 
   
-Let us try to implement the Uniform cost search
+Let us try to find the answer by implementing and writing the code for Uniform cost search algorithm.
 
 
 ```  
