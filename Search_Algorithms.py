@@ -305,7 +305,7 @@ if __name__ == '__main__':
     print()
 
     print("============ AStar Search ================")
-    path_astar, explored_astar = astar_search(graph_neighbours, '0', '61')
+    path_astar, explored_astar = astar_search(graph_neighbours, '0', '27')
     print("Path_astar:", path_astar)
     print("Explored Nodes A Star: ", explored_astar)
     print(len(explored_astar))
