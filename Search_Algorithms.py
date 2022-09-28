@@ -191,7 +191,7 @@ def is_this_node_in_frontier(node, frontier):
     return False
 
 
-def astar_search(graph, start, goal,get_manhattan_heuristic):
+def astar_search(graph, start, goal,m):
 
     path = []
     explored_nodes = list()
@@ -201,14 +201,14 @@ def astar_search(graph, start, goal,get_manhattan_heuristic):
         return path, explored_nodes
 
     path.append(start)
-    path_cost = get_geographical_heuristic(start, goal)
+    path_cost = get_manhattan_heuristic(start, goal)
     # Priority Queue to keep sorted distance travelled till now
     frontier = [(path_cost, path)]
     while len(frontier) > 0:
         # pop a node from the queue
         path_cost_till_now, path_till_now = pop_frontier(frontier)
         current_node = path_till_now[-1]
-        path_cost_till_now = path_cost_till_now - get_geographical_heuristic(current_node, goal)
+        path_cost_till_now = path_cost_till_now - m(current_node, goal)
         explored_nodes.append(current_node)
         # test goal condition
         if current_node == goal:
@@ -226,7 +226,7 @@ def astar_search(graph, start, goal,get_manhattan_heuristic):
 
             # extra_cost = graph.get_edge_weight(current_node, neighbour)
             extra_cost = 1
-            neighbour_cost = extra_cost + path_cost_till_now + get_geographical_heuristic(neighbour, goal)
+            neighbour_cost = extra_cost + path_cost_till_now + m(neighbour, goal)
             new_element = (neighbour_cost, path_to_neighbour)
 
             is_there, indexx, neighbour_old_cost, _ = get_frontier_params_new(neighbour, frontier)
@@ -316,6 +316,7 @@ if __name__ == '__main__':
     """
 
     print("============ AStar Search ================")
+    print("manhattan.heuristic")
     path_astar, explored_astar = astar_search(graph_neighbours, '0', '27',get_manhattan_heuristic)
     print("Path_astar:", path_astar)
     print("Explored Nodes A Star: ", explored_astar)
