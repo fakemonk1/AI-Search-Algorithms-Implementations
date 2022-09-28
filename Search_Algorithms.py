@@ -7,7 +7,7 @@ to this file that are not part of the classes that we want.
 
 import heapq
 import sys
-import math
+
 
 
 from util import generate_graph
@@ -291,7 +291,7 @@ def get_geographical_heuristic(node, goal):
     i_delta = abs(i - i_goal)**2
     j_delta = abs(j - j_goal)**2
 
-    geographical_dist = math.sqrt(i_delta + j_delta)
+    geographical_dist = (i_delta + j_delta)**1/2
     return geographical_dist
 
 
