@@ -191,7 +191,7 @@ def is_this_node_in_frontier(node, frontier):
     return False
 
 
-def astar_search(graph, start, goal,m):
+def greedy_search(graph, start, goal):
 
     path = []
     explored_nodes = list()
@@ -202,13 +202,13 @@ def astar_search(graph, start, goal,m):
 
     path.append(start)
     path_cost = get_manhattan_heuristic(start, goal)
-    # Priority Queue to keep sorted distance travelled till now
+    #Priority Queue to keep sorted distance travelled till now
     frontier = [(path_cost, path)]
     while len(frontier) > 0:
         # pop a node from the queue
         path_cost_till_now, path_till_now = pop_frontier(frontier)
         current_node = path_till_now[-1]
-        path_cost_till_now = path_cost_till_now - m(current_node, goal)
+        path_cost_till_now = path_cost_till_now# - m(current_node, goal)
         explored_nodes.append(current_node)
         # test goal condition
         if current_node == goal:
@@ -226,7 +226,7 @@ def astar_search(graph, start, goal,m):
 
             # extra_cost = graph.get_edge_weight(current_node, neighbour)
             extra_cost = 1
-            neighbour_cost = extra_cost + path_cost_till_now + m(neighbour, goal)
+            neighbour_cost = extra_cost + path_cost_till_now #+ m(neighbour, goal)
             new_element = (neighbour_cost, path_to_neighbour)
 
             is_there, indexx, neighbour_old_cost, _ = get_frontier_params_new(neighbour, frontier)
@@ -308,25 +308,31 @@ if __name__ == '__main__':
     graph_neighbours = generate_graph()
     """
     print("============ UCS Search ================")
-    path_ucs, explored_ucs = uniform_cost_search(graph_neighbours, '0', '27')
+    path_ucs, explored_ucs = uniform_cost_search(graph_neighbours, '0', '61')
     print("Path UCS:", path_ucs)
     # print("Explored Nodes UCS: ", explored_ucs)
     print(len(explored_ucs))
     print()
     """
 
-    print("============ AStar Search ================")
-    print("manhattan.heuristic")
-    path_astar, explored_astar = astar_search(graph_neighbours, '0', '27',get_manhattan_heuristic)
-    print("Path_astar:", path_astar)
-    print("Explored Nodes A Star: ", explored_astar)
-    print(len(explored_astar))
-    print()
-    print("geographical.heuristic")
-    path_astar, explored_astar = astar_search(graph_neighbours, '0', '27',get_geographical_heuristic)
-    print("Path_astar:", path_astar)
-    print("Explored Nodes A Star: ", explored_astar)
-    print(len(explored_astar))
+    print("============ Greedy Search ================")
+    #print("manhattan.heuristic")
+    #path_astar, explored_astar = astar_search(graph_neighbours, '0', '27',get_manhattan_heuristic)
+    #print("Path_astar:", path_astar)
+    #print("Explored Nodes A Star: ", explored_astar)
+    #print(len(explored_astar))
+    #print()
+    #print("geographical.heuristic")
+    #path_astar, explored_astar = astar_search(graph_neighbours, '0', '27',get_geographical_heuristic)
+    #print("Path_astar:", path_astar)
+    #print("Explored Nodes A Star: ", explored_astar)
+    #print(len(explored_astar))
+    #print()
+   
+    path_greedy, explored_greedy = greedy_search(graph_neighbours, '0', '61')
+    #print("Path_astar:", path_astar)
+    print("Explored Nodes A Star: ", explored_greedy)
+    print("length of the explored nodes :",len(explored_greedy))
     print()
     
     """
