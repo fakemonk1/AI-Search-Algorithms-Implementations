@@ -6,32 +6,32 @@ def generate_graph():
     add_neighbours('1', ['0', '2'])
     add_neighbours('2', ['10', '1'])
     add_neighbours('3', ['11', '4'])
-    """add_neighbours('4', ['3', '5'])
+    add_neighbours('4', ['3', '5'])
     add_neighbours('5', ['4', '6'])
     add_neighbours('6', ['5'])
-    add_neighbours('7', ['15'])"""
+    add_neighbours('7', ['15'])
     add_neighbours('8', ['0', '16', '9'])
     add_neighbours('9', ['8'])
     add_neighbours('10', ['2', '18'])
     add_neighbours('11', ['3', '19'])
-    """add_neighbours('12', ['13'])
+    add_neighbours('12', ['13'])
     add_neighbours('13', ['12', '14', '21'])
 
     add_neighbours(14, [13, 15])
-    add_neighbours(15, [7, 14, 23])"""
+    add_neighbours(15, [7, 14, 23])
     add_neighbours(16, [8, 17, 24])
     add_neighbours(17, [16])
     add_neighbours(18, [10, 19])
     add_neighbours(19, [11, 20, 18])
-    """add_neighbours(20, [19, 28])
+    add_neighbours(20, [19, 28])
     add_neighbours(21, [13, 22])
     add_neighbours(22, [21])
-    add_neighbours(23, [15, 31])"""
+    add_neighbours(23, [15, 31])
     add_neighbours(24, [16, 25])
     add_neighbours(25, [24, 26])
     add_neighbours(26, [25, 27])
     add_neighbours(27, [26, 35])
-    """add_neighbours(28, [20, 29])
+    add_neighbours(28, [20, 29])
     add_neighbours(29, [28, 30])
     add_neighbours(30, [29, 31])
     add_neighbours(31, [30, 23])
@@ -67,7 +67,7 @@ def generate_graph():
     add_neighbours(60, [59])
     add_neighbours(61, [53])
     add_neighbours(62, [54, 63])
-    add_neighbours(63, [55, 62])"""
+    add_neighbours(63, [55, 62])
 
     return graph_neighbours
 
